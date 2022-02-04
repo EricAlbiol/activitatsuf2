@@ -1,0 +1,151 @@
+https://github.com/sergigallardo/C_ASIX_UF2_2021-22/tree/main/UF2.Activitats/Ex12
+Jo posaria literals 
+
+FUNCTIONS.H
+#ifndef FUNCTIONS_H_
+#define FUNCTIONS_H_
+#define MSG "Introdueix el tamany de l'array: "
+#define MSG2 "Introdueix un natural: "
+ int validate();
+ int order(int *array,int);
+#endif /* FUNCTIONS_H_ */
+
+FUNCTIONS.C
+#include <stdio.h>
+#include "functions.h"
+int validate(char *msg2){
+	int num;
+	do{
+		printf(msg2);
+		scanf("%d",&num);
+	}while(num<1 || num>50);
+	return num;
+}
+
+int  order(int *array,int x){
+	for (int i = 0; i < x-1; i++) {
+		     for(int j = i + 1; j < x; j++) {
+		            if (array[i] < array[j]) {
+		            int canvi = array[i];
+		             array[i] = array[j];
+		             array[j] = canvi;
+		             }
+		     }
+		 }
+}
+
+MAIN.C
+#include <stdio.h>
+#include "functions.h"
+
+void main(){
+	int num, x=1,y=0;
+	int array[x];
+	printf(msg);
+	scanf("%d",&x);
+	while(y<x){
+		num=validate();
+		array[y]=num;
+		y++;
+	}
+	order(&array,x);
+	printf("Valors ordenats:");
+	for(y=0;y<x;y++){
+		printf("%d ",array[y]);
+	}
+}
+
+https://github.com/dan29iel/UF2/tree/main/Activitat%2011/src
+Esta incomplert
+I faria més funcions per fer-ho més eficient
+
+FUNCTIONS.H
+#define SIZE 200
+#define SIZE2 100
+
+void mostrar(int *, int);
+
+FUNCTIONS.C
+#include <stdio.h>
+#include "functions.h"
+
+void mostrar(int *llistaNumerospar, int *SIZE2){
+    printf("L'array ordenat és: [");
+    for (int j = 1; j < SIZE2+1;j++){
+        if(j!=SIZE2){
+            printf("%d, ", llistaNumerospar[j]);
+        }
+        else{
+            printf("%d", llistaNumerospar[j]);
+        }
+    }
+    printf("]");
+}
+
+MAIN.C
+#include <stdio.h>
+#include "functions.h"
+
+void main(){
+    int llistaNumeros[SIZE], llistaNumerospar[SIZE2];
+    int j=1;
+    for (int i = 1; i < SIZE+1; i++) {
+    llistaNumeros[i]=i;
+    if (llistaNumeros[i]%2==0) {
+        llistaNumerospar[j] = llistaNumeros[i];
+        j++;
+     }
+ }
+    mostrar(llistaNumerospar, SIZE2);
+}
+
+https://github.com/fsierra2000/UF2/tree/main/ejercicio2
+
+FUNCTIONS.H
+int introduir();
+void time(int segons);
+
+FUNCTIONS.C
+#include <stdio.h>
+int introduir() {
+	int num;
+	do {
+		printf("Introdueix la quantitat de segons:");
+		scanf("%d", &num);
+	} while (num < 0);
+	return num;
+}
+
+void time(int segons) {
+	int residu, cont;
+	cont=0;
+	do {
+		residu = segons % 86400;
+		segons = segons / 86400;
+		printf("Són %d dies, ", segons);
+	} while (segons > 86400);
+	do {
+		segons = residu/3600;
+		residu = residu%3600;
+		printf("%d hores, ", segons);
+	} while (segons > 3600);
+	do {
+		segons = residu/60;
+		residu = residu%60;
+		printf("%d minuts i ", segons);
+	}while (segons>60);
+	do {
+		printf("%d segons.", residu);
+		cont=cont+1;
+	}while (cont<1);
+
+}
+
+MAIN.C
+#include <stdio.h>
+#include "function.h"
+void main(){
+	int segons;
+	segons = introduir();
+	time(segons);
+}
